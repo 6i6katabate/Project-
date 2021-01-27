@@ -7,6 +7,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import java.awt.Font;
@@ -15,12 +16,14 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JScrollBar;
 
 public class Project {
 
 private JFrame frmOkoko;
 private JTextField dayField;
-
+private final JScrollPane scrollPane_1 = new JScrollPane();
+private JTextArea textArea_1;
 
 /**
 * Launch the application.
@@ -61,20 +64,32 @@ frmOkoko.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frmOkoko.getContentPane().setLayout(null);
 
 dayField = new JTextField();
-dayField.setBounds(169, 137, 314, 34);
+dayField.setBounds(106, 137, 377, 34);
 frmOkoko.getContentPane().add(dayField);
 dayField.setColumns(10);
+ textArea_1 = new JTextArea();
+textArea_1.setBackground(Color.WHITE);
+scrollPane_1.setColumnHeaderView(textArea_1);
 
-JTextArea textArea = new JTextArea();
-textArea.setBounds(169, 238, 314, 34);
-textArea.setBackground(Color.WHITE);
-frmOkoko.getContentPane().add(textArea);
+JLabel lblNewLabel = new JLabel("Enter day of the week");
+lblNewLabel.setBounds(94, 83, 387, 40);
+lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+frmOkoko.getContentPane().add(lblNewLabel);
+JScrollPane scrollPane = new JScrollPane();
+scrollPane.setBounds(522, 274, 57, -20);
+frmOkoko.getContentPane().add(scrollPane);
+scrollPane_1.setBounds(106, 197, 377, 135);
+frmOkoko.getContentPane().add(scrollPane_1);
 
+
+scrollPane_1.setViewportView(textArea_1);
 
 
 JButton SubmitBTN = new JButton("SUBMIT");
 SubmitBTN.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent arg0) {
+	
 
 String day = dayField.getText();
 
@@ -82,7 +97,7 @@ switch(day) {
 
 case "Monday":
 
-textArea.setText("Chest and Back"
+textArea_1.setText("Chest and Back\r\n"
 		+ "Bench press – 5 sets, 6-10 reps\r\n"
 		+ "Front wide-grip chin-ups – 6 sets, to failure\r\n"
 		+ "Flat bench flies – 5 sets, 6-10 reps\r\n"
@@ -98,7 +113,7 @@ break;
 
 case "Tuesday":
 
-textArea.setText("Arms and Shoulders"
+textArea_1.setText("Arms and Shoulders\r\n"
 		+ "Barbell curls – 6 sets, 6-10 reps\r\n"
 		+ "Seated dumbbell curls – 6 sets, 6-10 reps\r\n"
 		+ "Dumbbell concentration curls – 6 sets, 6-10 reps"
@@ -115,7 +130,7 @@ break;
 
 case "Wednesday":
 
-textArea.setText("Legs"
+textArea_1.setText("Legs\r\n"
 		+ "Squats – 6 sets, 8-12 reps\r\n"
 		+ "Leg presses – 6 sets, 8-12 reps\r\n"
 		+ "Leg extensions – 6 sets, 12-15 reps\r\n"
@@ -129,13 +144,13 @@ break;
 
 case "Thursday":
 
-textArea.setText("Rest day");
+textArea_1.setText("Rest day");
 
 break;
 
 case "Friday":
 
-textArea.setText("Chest and Back"
+textArea_1.setText("Chest and Back\r\n"
 		+ "Bench press – 5 sets, 6-10 reps\r\n"
 		+ "Front wide-grip chin-ups – 6 sets, to failure\r\n"
 		+ "Flat bench flies – 5 sets, 6-10 reps\r\n"
@@ -152,7 +167,7 @@ break;
 
 case "Saturday":
 
-textArea.setText("Arms and Forearms"
+textArea_1.setText("Arms and Forearms\r\n"
 		+ "Barbell curls – 6 sets, 6-10 reps\r\n"
 		+ "Seated dumbbell curls – 6 sets, 6-10 reps\r\n"
 		+ "Dumbbell concentration curls – 6 sets, 6-10 reps"
@@ -168,7 +183,7 @@ break;
 
 case "Sunday":
 
-textArea.setText("Legs"
+textArea_1.setText("Legs\r\n"
 		+ "Squats – 6 sets, 8-12 reps\r\n"
 		+ "Leg presses – 6 sets, 8-12 reps\r\n"
 		+ "Leg extensions – 6 sets, 12-15 reps\r\n"
@@ -181,7 +196,8 @@ textArea.setText("Legs"
 break;
 
 default:
-
+	JOptionPane.showMessageDialog(null, "Invalid input!",
+		      "Error", JOptionPane.ERROR_MESSAGE);
 }
 
 }
@@ -191,13 +207,6 @@ SubmitBTN.setForeground(Color.BLACK);
 SubmitBTN.setBackground(Color.YELLOW);
 frmOkoko.getContentPane().add(SubmitBTN);
 
-
-
-JLabel lblNewLabel = new JLabel("Enter day of the week");
-lblNewLabel.setBounds(233, 86, 203, 40);
-lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-frmOkoko.getContentPane().add(lblNewLabel);
 
 
 
